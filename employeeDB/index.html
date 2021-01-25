@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Employee Database">
+        <meta name="author" content="Matthew">
+
+        <link href ="resources/css/bootstrap.min.css" rel ="stylesheet" type ="text/css">
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css">
+        <link rel="icon" href="resources/css/images/favicon.png" type="image/ico">
+
+        <script type = "text/javascript" src="resources/js/jquery-3.5.1.min.js"></script>
+        <script type = "text/javascript" src="resources/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="resources/js/app.js"></script>
+        <script type="text/javascript" src="resources/js/sorttable.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-dark bg-dark fixed-top shadow-border">
+
+                <span class="navbar-brand text-light">EmployeeDB</span>
+
+                <div class="form-inline">
+                    <form class="form form-inline form-group border border-secondary rounded">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="tableType">Change table:</label>
+                        </div>
+
+                        <select id="tableType" class="custom-select form-control">
+                            <option value="employee">Employee</option>
+                            <option value="department">Department</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </form>
+                    <button type="button" id="formType" class="btn btn-primary" data-toggle="modal" data-target="#employeeFormModal">+Add</button>
+                </div>
+
+            </nav>
+        </header>
+
+        <div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h5 class="modal-title w-100" id="employeeFormModal">Employee Form</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="employeeForm" class="form form-group border border-secondary rounded">
+                        <input type="text" name="firstName" placeholder="First Name" aria-label="First Name" class="form-control">
+                        <input type="text" name="lastName" placeholder="Last Name" aria-label="Last Name" class="form-control">
+                        <input type="email" name="email" placeholder="Email" aria-label="Email" class="form-control">
+                        <input type="text" name="jobTitle" placeholder="Job Title" aria-label="Job Title" class="form-control">
+                        <select name="department" aria-label="Department" id="departmentSelect" class="form-control custom-select">
+                            <option selected disabled>Department</option>
+                        </select>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <input type="submit" value="Add Employee" name="submit" class="btn btn-primary">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="locationFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h5 class="modal-title w-100" id="locationFormModal">Location Form</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    
+            <form id="locationForm" class="form form-group border border-secondary rounded">
+                <input type="text" name="location" placeholder="Location" aria-label="Location" class="form-control" id="locationName">
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <input type="submit" value="Add Location" name="submit" class="btn btn-primary">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="departmentFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h5 class="modal-title w-100" id="departmentFormModal">Department Form</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                    <form id="departmentForm" class="form form-group border border-secondary rounded">
+                        <input type="text" name="department" placeholder="Department" aria-label="Department" id="departmentName" class="form-control">
+                        <select aria-label="Location" name="location" class="form-control" id="locationSelect">
+                            <option selected disabled>Location</option>
+                        </select>
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <input type="submit" value="Add Department" name="submit" class="btn btn-primary">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade" id="alertBox" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center">
+                  <h5 class="modal-title w-100" id="alertBoxHeader"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="alertBoxContent">
+
+                </div>
+                <div class="modal-footer">
+                  <button id="confirmButton" type="button" class="btn btn-secondary" data-dismiss="modal">Confirm</button>
+                  <button id="deleteButton" type="button" class="btn btn-primary"></button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="container-fluid">
+
+            <table id="employeeData" class="table table-sm table-striped table-light sortable tableGroup employeeTable">
+                <tbody>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th class="d-none d-md-table-cell">Location</th>
+                        <th>E-mail</th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="departmentData" class="table table-sm table-striped table-light sortable tableGroup departmentTable">
+                <tbody>
+                    <tr>
+                        <th>Department</th>
+                        <th>Location</th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="locationData" class="table table-sm table-striped table-light sortable tableGroup locationTable">
+                <tbody>
+                    <tr>
+                        <th>Location</th>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+
+
+        </div>
+
+    </body>
+</html>
