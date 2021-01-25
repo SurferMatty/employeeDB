@@ -448,6 +448,9 @@ const deleteSuccess = (type) => {
     $('#alertBoxContent').html("Entry Deleted.")
     setTimeout(function(){ 
         $('#alertBox').modal("toggle");
+        $('#confirmButton').html('Confirm');
+        $('#deleteButton').hide();
+        $('#alertBox').modal('toggle');
      }, 500);
 };
 
@@ -486,7 +489,6 @@ const confirmDelete = (btn) => {
 
     $('#alertBoxHeader').html("Delete Confirmation");
     $('#alertBoxContent').html("Do you wish to delete this entry?");
-    $('#deleteButton').html('Delete');
     $('#confirmButton').html('Cancel');
     $('#deleteButton').attr('onClick', 'deleteEntry("' + $type + '" , ' + $id + ')');
     $('#deleteButton').show();
